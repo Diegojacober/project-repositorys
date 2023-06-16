@@ -1,8 +1,11 @@
 import React from "react";
 
+import { Title } from "../Main/styles";
 
 export default function Repositorios() {
     return(
-        <>Repositorios</>
+        <Title>
+            Repositorios
+        </Title>
     )
 }
