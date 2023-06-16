@@ -1,11 +1,10 @@
-import React from "react";
-
-import { Title } from "../Main/styles";
+import React, { useState } from "react";
 
 export default function Repositorios() {
     return(
-        <Title>
-            Repositorios
-        </Title>
+        <>
+        Repositórios
+        </>
     )
 }
+
