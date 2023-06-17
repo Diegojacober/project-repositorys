@@ -102,3 +102,87 @@ export const BackButton = styled(Link)`
         padding: 5px 20px;
     }
 `
+
+export const IssuesList = styled.ul`
+
+    &{
+        list-style: none;
+        margin-top: 30px;
+        padding-top: 30px;
+        border-top: 1px solid #200;
+    }
+
+
+    & li {
+        display: flex;
+        padding: 15px 10px;
+
+        & + li {
+            margin-top: 12px;
+        }
+
+        img{
+        width: 70px;
+        border-radius: 50%;
+        border: 1px solid #0d2636;
+        }
+
+        div{
+            flex: 1;
+            margin-left: 12px;
+        }
+
+        p{
+            margin-top: 10px;
+            font-size: 12px;
+            color: #000;
+        }
+
+        strong{
+            font-size: 15px;
+            
+            a{
+                text-decoration: none;
+                color: #222;
+                transition: all ease-in-out 0.3s;
+
+                &:hover{
+                    color: #0071db;
+                }
+            }
+
+            span{
+                background: #222;
+                color: #FFF;
+                border-radius: 4px;
+                font-size: 12px;
+                font-weight: 600;
+                padding: 4px 7px;
+                margin-left: 10px;
+            }
+        }
+    }
+`
+
+export const PageActions = styled.div`
+    &{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    
+    
+        button{
+            outline: 0;
+            border: 0;
+            background: #222;
+            color: #FFF;
+            padding: 5px 10px;
+            border-radius: 4px;
+            
+            &:disabled{
+                cursor: not-allowed;
+                opacity: 0.5;
+            }
+        }
+    }
+` 
