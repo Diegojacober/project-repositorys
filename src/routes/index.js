@@ -8,7 +8,7 @@ function RoutesApp() {
         <Routes>
             <Route path='/' element={ <Main/> }/>
 
-            <Route path='/repositorio/:id' element={ <Repositorios/> }/>
+            <Route path='/repo/:id' element={ <Repositorios/> }/>
 
         </Routes>
     )

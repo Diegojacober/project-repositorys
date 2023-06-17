@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { FaGithub, FaPlus, FaSpinner, FaShareSquare, FaTrash } from 'react-icons/fa'
 
 import { toast } from "react-toastify";
@@ -135,7 +136,7 @@ export default function Main() {
                         </div>
 
                         <div className="repo-informations">
-                            <h6>{repo.name} <i className="button-share" onClick={() => openPageRepo(repo.name)}><FaShareSquare size={20} color="#0d2636" /></i></h6>
+                            <h6>{repo.name} <Link to={`/repo/${encodeURIComponent(repo.name)}`} className="button-share"><FaShareSquare size={20} color="#0d2636" /></Link></h6>
                             <p><small>Criado em: {repo.created_at}</small>
                                 <small>Atualizado em: {repo.updated_at}</small></p>
                             <div className="buttons">
