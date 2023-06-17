@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { styled } from "styled-components";
+import { styled, css } from "styled-components";
 
 
 export const Container = styled.div`
@@ -186,3 +186,33 @@ export const PageActions = styled.div`
         }
     }
 ` 
+
+export const Filters = styled.div.attrs(props => ({
+    inactive: props.inactive,
+    }))`
+
+    &{
+        width: 100%;
+        margin-top: 20px;
+        display: flex;
+        align-self: center;
+        justify-content: center;
+        gap: 80px;
+
+        button{
+            padding: 5px 10px;
+            color: #FFF;
+            background: #0d2636;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .active{
+            background-color:  #0071db;
+        }
+
+        .inactive{
+            opacity: 0.5;
+        }
+    }
+`

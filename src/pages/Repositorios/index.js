@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom'
-import { Container, Loader, Owner, BackButton, IssuesList, PageActions } from "./styles";
+import { Container, Loader, Owner, BackButton, IssuesList, PageActions, Filters } from "./styles";
 import api from '../../services/api'
 import { FaArrowLeft } from 'react-icons/fa'
 
@@ -12,6 +12,7 @@ export default function Repositorios() {
     const [issues, setIssues] = useState([])
     const [loading, setLoading] = useState(true)
     const [page, setPage] = useState(1)
+    const [type, setType] = useState('open')
 
     useEffect(() => {
         async function loadData() {
@@ -34,13 +35,12 @@ export default function Repositorios() {
         loadData()
     }, [id])
 
-
     useEffect(() => {
 
         async function loadIssue() {
             const response = await api.get(`/repos/${id}/issues`, {
                 params: {
-                    state: 'open',
+                    state: type,
                     page,
                     per_page: 5
                 }
@@ -51,11 +51,17 @@ export default function Repositorios() {
 
         loadIssue()
 
-    }, [id, page])
+    }, [id, page, type])
+
+    function handleFilter(tipo) {
+        setType(tipo)
+    }
 
     function handlePage(action) {
         setPage(action === 'back' ? page - 1 : page + 1)
     }
+
+    
 
     if(loading) {
         return(
@@ -80,15 +86,20 @@ export default function Repositorios() {
 
        </Owner>
 
-       <IssuesList>
+        <Filters>
+            <button className={type === 'open' ? 'active' : 'inactive'} onClick={() => handleFilter('open')}>OPEN</button>
+            <button className={type === 'closed' ? 'active' : 'inactive'} onClick={() => handleFilter('closed')}>CLOSED</button>
+            <button className={type === 'all' ? 'active' : 'inactive'} onClick={() => handleFilter('all')}>ALL</button>
+        </Filters>
 
+       <IssuesList>
             {issues.map((issue => (
                 <li key={String(issue.id)}>
                     <img src={issue.user.avatar_url} alt={issue.user.login} />
 
                     <div>
                         <strong>
-                            <a href={issue.html_url} >{issue.title}</a>
+                            <a href={issue.html_url} target="__BLANK">{issue.title}</a>
 
                             {issue.labels.map(label => (
                                 <span key={String(label.id)}>{label.name}</span>
@@ -98,8 +109,6 @@ export default function Repositorios() {
                     </div>
                 </li>
             )))}
-
-
        </IssuesList>
 
 

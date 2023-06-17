@@ -129,7 +129,6 @@ export default function Main() {
             <List>
                 {repositorios.map((repo, index) => (
                     <Repo key={index}>
-                        {console.log(repo)}
                         <div className="repo-right">
                             <img src={repo.owner_url} alt="Criador" />
                             <small>{repo.owner_name}</small>
