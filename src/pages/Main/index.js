@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { FaGithub, FaPlus, FaSpinner, FaShareSquare, FaTrash } from 'react-icons/fa'
 
 import { toast } from "react-toastify";
@@ -11,6 +11,20 @@ export default function Main() {
     const [newRepo, setNewRepo] = useState('')
     const [loading, setLoading] = useState(false)
     const [repositorios, setRepositorios] = useState([])
+
+    //DidMount
+    useEffect(() => {
+        const reposStorage = localStorage.getItem('repos')
+        if (reposStorage) {
+            setRepositorios(JSON.parse(reposStorage))
+        }
+    }, [])
+
+    //Como se fosse o DidUpdate
+    useEffect(() => {
+        localStorage.setItem('repos', JSON.stringify(repositorios))
+    }, [repositorios])
+
 
     const handleSubmit = useCallback((e) => {
         e.preventDefault();
